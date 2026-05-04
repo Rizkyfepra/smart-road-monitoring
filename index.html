@@ -254,9 +254,234 @@ tr:hover td{background:var(--bg3);color:var(--text1)}
   .stat-grid{grid-template-columns:1fr}
   .two-field{grid-template-columns:1fr}
 }
+
+/* ===== LANDING PAGE ===== */
+#landing{position:fixed;inset:0;z-index:9000;background:var(--bg0);display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden}
+#landing.hidden{display:none}
+
+/* noise overlay reapply inside landing */
+#landing::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;opacity:.4}
+
+/* glow orbs */
+.lp-orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0}
+.lp-orb1{width:500px;height:500px;background:rgba(59,130,246,.12);top:-120px;left:-100px}
+.lp-orb2{width:400px;height:400px;background:rgba(139,92,246,.08);bottom:0;right:-80px}
+.lp-orb3{width:300px;height:300px;background:rgba(6,182,212,.06);top:40%;left:50%}
+
+/* nav */
+.lp-nav{position:relative;z-index:10;display:flex;align-items:center;padding:20px 48px;border-bottom:1px solid var(--border)}
+.lp-nav-logo{display:flex;align-items:center;gap:10px;flex:1}
+.lp-nav-badge{font-size:10px;color:var(--text3);background:var(--bg3);border:1px solid var(--border);padding:2px 8px;border-radius:99px;letter-spacing:.5px;font-weight:500}
+.lp-nav-cta{display:flex;gap:10px}
+@media(max-width:600px){.lp-nav{padding:16px 20px}.lp-nav-cta .btn-ghost{display:none}}
+
+/* hero */
+.lp-hero{position:relative;z-index:5;display:flex;flex-direction:column;align-items:center;text-align:center;padding:90px 24px 60px;max-width:860px;margin:0 auto}
+.lp-tag{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.25);border-radius:99px;font-size:11px;color:var(--accent2);font-weight:600;letter-spacing:.5px;margin-bottom:28px}
+.lp-tag-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;box-shadow:0 0 6px var(--accent);animation:pulse 2s infinite}
+.lp-h1{font-size:clamp(32px,6vw,62px);font-weight:700;letter-spacing:-2px;line-height:1.1;margin-bottom:22px}
+.lp-h1 span{background:linear-gradient(135deg,var(--accent2),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.lp-sub{font-size:clamp(14px,2vw,17px);color:var(--text2);max-width:560px;line-height:1.7;margin-bottom:40px}
+.lp-cta-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.lp-cta-row .btn-lg{font-size:14px}
+
+/* stats strip */
+.lp-stats{position:relative;z-index:5;display:flex;justify-content:center;gap:0;padding:28px 24px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg1)}
+.lp-stat{display:flex;flex-direction:column;align-items:center;padding:0 40px;border-right:1px solid var(--border)}
+.lp-stat:last-child{border-right:none}
+.lp-stat-val{font-size:28px;font-weight:700;letter-spacing:-1px;color:var(--text1)}
+.lp-stat-val span{font-size:16px;color:var(--accent2)}
+.lp-stat-label{font-size:11px;color:var(--text3);font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-top:4px}
+@media(max-width:600px){.lp-stats{flex-wrap:wrap;gap:0}.lp-stat{flex:1 1 50%;border-right:none;border-bottom:1px solid var(--border);padding:16px}.lp-stat:last-child{border-bottom:none}}
+
+/* features */
+.lp-features{position:relative;z-index:5;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:960px;margin:0 auto;padding:64px 24px}
+@media(max-width:700px){.lp-features{grid-template-columns:1fr}}
+.feat-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:24px;transition:border-color .2s,transform .2s}
+.feat-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.feat-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.feat-icon svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.feat-title{font-size:14px;font-weight:700;margin-bottom:8px}
+.feat-desc{font-size:12px;color:var(--text2);line-height:1.7}
+
+/* how it works */
+.lp-how{position:relative;z-index:5;max-width:760px;margin:0 auto;padding:20px 24px 72px;text-align:center}
+.lp-section-label{font-size:11px;color:var(--accent2);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
+.lp-section-title{font-size:clamp(20px,4vw,30px);font-weight:700;letter-spacing:-.5px;margin-bottom:48px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:600px){.steps{grid-template-columns:1fr}}
+.step{display:flex;flex-direction:column;align-items:center;gap:12px}
+.step-num{width:36px;height:36px;border-radius:50%;background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.3);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--accent2)}
+.step-title{font-size:13px;font-weight:700}
+.step-desc{font-size:12px;color:var(--text2);line-height:1.7;text-align:center}
+
+/* CTA bottom */
+.lp-bottom-cta{position:relative;z-index:5;background:linear-gradient(135deg,rgba(59,130,246,.12),rgba(139,92,246,.08));border-top:1px solid rgba(59,130,246,.2);padding:72px 24px;text-align:center}
+.lp-bottom-cta h2{font-size:clamp(22px,4vw,36px);font-weight:700;letter-spacing:-.5px;margin-bottom:12px}
+.lp-bottom-cta p{font-size:14px;color:var(--text2);margin-bottom:32px}
+
+/* footer */
+.lp-footer{position:relative;z-index:5;border-top:1px solid var(--border);padding:24px 48px;display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--text3)}
+@media(max-width:600px){.lp-footer{flex-direction:column;gap:8px;padding:20px;text-align:center}}
+
+/* entrance animation */
+@keyframes lp-rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.lp-hero>*{animation:lp-rise .6s ease both}
+.lp-tag{animation-delay:.05s}
+.lp-h1{animation-delay:.15s}
+.lp-sub{animation-delay:.25s}
+.lp-cta-row{animation-delay:.35s}
+
 </style>
 </head>
 <body>
+
+
+<!-- ===== LANDING PAGE ===== -->
+<div id="landing">
+  <div class="lp-orb lp-orb1"></div>
+  <div class="lp-orb lp-orb2"></div>
+  <div class="lp-orb lp-orb3"></div>
+
+  <!-- Nav -->
+  <nav class="lp-nav">
+    <div class="lp-nav-logo">
+      <div class="logo-icon" style="width:32px;height:32px;font-size:11px;font-weight:700;letter-spacing:-.5px">RW</div>
+      <span style="font-size:15px;font-weight:700;letter-spacing:-.3px">RoadWatch</span>
+      <span class="lp-nav-badge">v1.0</span>
+    </div>
+    <div class="lp-nav-cta">
+      <button class="btn btn-ghost btn-sm" onclick="enterApp('tentang')">Tentang</button>
+      <button class="btn btn-primary btn-sm" onclick="enterApp('dashboard')">Buka Aplikasi</button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="lp-hero">
+    <div class="lp-tag">
+      <div class="lp-tag-dot"></div>
+      Smart City Initiative
+    </div>
+    <h1 class="lp-h1">Laporkan Kerusakan Jalan<br><span>Lebih Cepat, Lebih Mudah</span></h1>
+    <p class="lp-sub">RoadWatch adalah platform pelaporan kerusakan jalan berbasis web yang memudahkan warga melaporkan jalan rusak secara real-time langsung dari browser — tanpa perlu install apapun.</p>
+    <div class="lp-cta-row">
+      <button class="btn btn-primary btn-lg" onclick="enterApp('laporan')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+        Buat Laporan Sekarang
+      </button>
+      <button class="btn btn-ghost btn-lg" onclick="enterApp('dashboard')">
+        Lihat Dashboard
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9,18 15,12 9,6"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="lp-stats">
+    <div class="lp-stat">
+      <div class="lp-stat-val" id="lp-stat-total">0<span>+</span></div>
+      <div class="lp-stat-label">Total Laporan</div>
+    </div>
+    <div class="lp-stat">
+      <div class="lp-stat-val" id="lp-stat-selesai">0<span>%</span></div>
+      <div class="lp-stat-label">Ditangani</div>
+    </div>
+    <div class="lp-stat">
+      <div class="lp-stat-val">24<span>/7</span></div>
+      <div class="lp-stat-label">Monitoring</div>
+    </div>
+    <div class="lp-stat">
+      <div class="lp-stat-val">100<span>%</span></div>
+      <div class="lp-stat-label">Gratis</div>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <section class="lp-features">
+    <div class="feat-card">
+      <div class="feat-icon" style="background:rgba(59,130,246,.15);color:var(--accent2)">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div class="feat-title">Lokasi Presisi via Peta</div>
+      <div class="feat-desc">Tandai titik kerusakan langsung di peta interaktif atau cari nama jalan menggunakan fitur pencarian — tanpa perlu tahu koordinat.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon" style="background:rgba(16,185,129,.15);color:var(--green2)">
+        <svg viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+      </div>
+      <div class="feat-title">Pantau Status Real-time</div>
+      <div class="feat-desc">Lacak status setiap laporan — dari Baru, Diproses, hingga Selesai — langsung dari dashboard dengan tampilan yang jelas.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon" style="background:rgba(245,158,11,.15);color:var(--yellow)">
+        <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      </div>
+      <div class="feat-title">Riwayat Lengkap</div>
+      <div class="feat-desc">Semua laporan tersimpan otomatis di perangkat. Cari, filter, dan kelola riwayat laporan kapanpun dengan mudah.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon" style="background:rgba(139,92,246,.15);color:var(--purple)">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      </div>
+      <div class="feat-title">Berbasis Web, Tanpa Install</div>
+      <div class="feat-desc">Akses langsung dari browser manapun — Chrome, Firefox, atau Safari. Tidak butuh download aplikasi tambahan.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon" style="background:rgba(6,182,212,.15);color:var(--cyan)">
+        <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      </div>
+      <div class="feat-title">Klasifikasi Kerusakan</div>
+      <div class="feat-desc">Pilih jenis dan tingkat kerusakan — dari ringan hingga kritis — agar penanganan bisa diprioritaskan dengan tepat.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon" style="background:rgba(239,68,68,.15);color:#f87171">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="feat-title">Data Privat & Aman</div>
+      <div class="feat-desc">Semua data laporan disimpan lokal di perangkat Anda. Tidak ada data yang dikirim ke server eksternal tanpa sepengetahuan Anda.</div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="lp-how">
+    <div class="lp-section-label">Cara Kerja</div>
+    <h2 class="lp-section-title">Tiga Langkah Mudah</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-title">Temukan Lokasinya</div>
+        <div class="step-desc">Cari nama jalan atau klik langsung titik kerusakan di peta interaktif untuk mendapatkan koordinat yang akurat.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-title">Isi Detail Laporan</div>
+        <div class="step-desc">Lengkapi informasi kerusakan — jenis, tingkat keparahan, dan deskripsi singkat — agar penanganan lebih tepat sasaran.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-title">Kirim & Pantau</div>
+        <div class="step-desc">Laporan langsung tersimpan dan bisa dipantau statusnya kapanpun dari halaman Riwayat Laporan.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <div class="lp-bottom-cta">
+    <h2>Siap Melaporkan Kerusakan Jalan?</h2>
+    <p>Bergabung dan bantu jaga kondisi jalan di sekitar Anda tetap aman dan layak.</p>
+    <button class="btn btn-primary btn-lg" onclick="enterApp('laporan')">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+      Mulai Buat Laporan
+    </button>
+  </div>
+
+  <!-- Footer -->
+  <footer class="lp-footer">
+    <span>© 2025 RoadWatch — Smart Road Monitor v1.0</span>
+    <span>Smart City Initiative · Dibuat untuk kepentingan publik</span>
+  </footer>
+</div>
+<!-- ===== END LANDING ===== -->
 
 <div id="toast">Laporan berhasil dikirim!</div>
 
@@ -977,6 +1202,28 @@ window.addEventListener('scroll', () => {
 
 saveData();
 updateDashboard();
+
+// ===== LANDING PAGE =====
+function enterApp(page) {
+  document.getElementById('landing').classList.add('hidden');
+  document.body.style.overflow = '';
+  goPage(page || 'dashboard');
+}
+
+function updateLandingStats() {
+  const total = laporan.length;
+  const selesai = laporan.filter(l => l.status === 'Selesai').length;
+  const pct = total > 0 ? Math.round((selesai / total) * 100) : 0;
+  document.getElementById('lp-stat-total').innerHTML = total + '<span>+</span>';
+  document.getElementById('lp-stat-selesai').innerHTML = pct + '<span>%</span>';
+}
+
+// Show landing on load, lock scroll
+(function() {
+  document.body.style.overflow = 'hidden';
+  updateLandingStats();
+})();
+
 </script>
 </body>
 </html>
