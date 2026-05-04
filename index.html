@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="RoadWatch">
 <title>RoadWatch — Smart Road Monitor</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
 
@@ -34,8 +34,8 @@
   --red: #ef4444;
   --purple: #8b5cf6;
   --cyan: #06b6d4;
-  --mono: 'JetBrains Mono', monospace;
-  --sans: 'Space Grotesk', sans-serif;
+  --mono: 'Poppins', sans-serif;
+  --sans: 'Poppins', sans-serif;
   --r: 12px;
   --r2: 8px;
 }
@@ -43,36 +43,34 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg0);color:var(--text1);font-family:var(--sans);min-height:100vh;overflow-x:hidden}
 
-/* Scrollbar */
 ::-webkit-scrollbar{width:4px;height:4px}
 ::-webkit-scrollbar-track{background:var(--bg1)}
 ::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:2px}
 
-/* Noise texture overlay */
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.4}
 
-/* LAYOUT */
 .app{display:flex;min-height:100vh;position:relative;z-index:1}
 
 /* SIDEBAR */
 .sidebar{width:220px;min-height:100vh;background:var(--bg1);border-right:1px solid var(--border);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;flex-shrink:0}
 .logo{padding:24px 20px 20px;border-bottom:1px solid var(--border)}
 .logo-mark{display:flex;align-items:center;gap:10px;margin-bottom:4px}
-.logo-icon{width:32px;height:32px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 0 20px rgba(59,130,246,0.4)}
+.logo-icon{width:32px;height:32px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;box-shadow:0 0 20px rgba(59,130,246,0.4);letter-spacing:-0.5px}
 .logo-name{font-size:15px;font-weight:700;letter-spacing:-.3px}
-.logo-tag{font-size:10px;color:var(--text3);font-family:var(--mono);letter-spacing:.5px}
+.logo-tag{font-size:10px;color:var(--text3);letter-spacing:.5px}
 
 .nav{padding:16px 12px;flex:1}
-.nav-label{font-size:10px;color:var(--text3);font-family:var(--mono);letter-spacing:1px;padding:0 8px;margin-bottom:8px;margin-top:16px}
+.nav-label{font-size:10px;color:var(--text3);letter-spacing:1px;padding:0 8px;margin-bottom:8px;margin-top:16px;font-weight:600;text-transform:uppercase}
 .nav-label:first-child{margin-top:0}
 .nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:var(--r2);cursor:pointer;font-size:13px;font-weight:500;color:var(--text2);transition:all .15s;border:1px solid transparent;margin-bottom:2px;user-select:none}
 .nav-item:hover{background:var(--bg3);color:var(--text1)}
 .nav-item.active{background:rgba(59,130,246,0.15);color:var(--accent2);border-color:rgba(59,130,246,0.25)}
-.nav-icon{font-size:14px;width:18px;text-align:center;flex-shrink:0}
-.nav-badge{margin-left:auto;background:var(--accent);color:#fff;font-size:10px;padding:1px 6px;border-radius:99px;font-family:var(--mono)}
+.nav-icon{width:18px;height:18px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.nav-icon svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.nav-badge{margin-left:auto;background:var(--accent);color:#fff;font-size:10px;padding:1px 6px;border-radius:99px;font-weight:600}
 
 .sidebar-footer{padding:16px;border-top:1px solid var(--border)}
-.version{font-size:10px;color:var(--text3);font-family:var(--mono)}
+.version{font-size:10px;color:var(--text3)}
 
 /* MAIN */
 .main{flex:1;display:flex;flex-direction:column;min-width:0}
@@ -80,24 +78,20 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 /* TOPBAR */
 .topbar{background:var(--bg1);border-bottom:1px solid var(--border);padding:0 28px;height:60px;display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:100}
 .topbar-title{font-size:16px;font-weight:600;flex:1}
-.topbar-subtitle{font-size:11px;color:var(--text3);font-family:var(--mono);margin-top:1px}
 .live-dot{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 8px var(--green);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(0.9)}}
-.topbar-time{font-family:var(--mono);font-size:11px;color:var(--text3);background:var(--bg3);padding:4px 10px;border-radius:var(--r2);border:1px solid var(--border)}
+.topbar-time{font-size:11px;color:var(--text3);background:var(--bg3);padding:4px 10px;border-radius:var(--r2);border:1px solid var(--border);font-weight:500}
 
 /* CONTENT */
 .content{flex:1;padding:28px}
 
-/* PAGE */
 .page{display:none}
 .page.active{display:block}
 
-/* SECTION HEADER */
 .section-head{margin-bottom:24px}
 .section-title{font-size:20px;font-weight:700;letter-spacing:-.4px;margin-bottom:4px}
 .section-desc{font-size:13px;color:var(--text2)}
 
-/* CARDS */
 .card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;transition:border-color .2s}
 .card:hover{border-color:var(--border2)}
 
@@ -110,24 +104,24 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .stat-card.green::before{background:var(--green)}
 .stat-card.yellow::before{background:var(--yellow)}
 .stat-card.red::before{background:var(--red)}
-.stat-label{font-size:11px;color:var(--text3);font-family:var(--mono);letter-spacing:.5px;margin-bottom:10px}
-.stat-val{font-size:28px;font-weight:700;letter-spacing:-1px;font-family:var(--mono)}
+.stat-label{font-size:11px;color:var(--text3);letter-spacing:.5px;margin-bottom:10px;font-weight:600;text-transform:uppercase}
+.stat-val{font-size:28px;font-weight:700;letter-spacing:-1px}
 .stat-change{font-size:11px;color:var(--text3);margin-top:4px}
 .stat-change.up{color:var(--green2)}
-.stat-icon{position:absolute;top:16px;right:16px;font-size:20px;opacity:.25}
+.stat-icon{position:absolute;top:14px;right:16px}
+.stat-icon svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;opacity:.2}
 
-/* TWO COL */
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
 .three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:24px}
 
 /* TABLE */
 .table-wrap{overflow-x:auto;margin-top:4px}
 table{width:100%;border-collapse:collapse;font-size:13px}
-th{text-align:left;padding:10px 14px;font-size:10px;font-family:var(--mono);letter-spacing:.8px;color:var(--text3);border-bottom:1px solid var(--border);font-weight:500}
+th{text-align:left;padding:10px 14px;font-size:10px;letter-spacing:.8px;color:var(--text3);border-bottom:1px solid var(--border);font-weight:600;text-transform:uppercase}
 td{padding:12px 14px;border-bottom:1px solid var(--border);color:var(--text2)}
 tr:last-child td{border-bottom:0}
 tr:hover td{background:var(--bg3);color:var(--text1)}
-.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:99px;font-size:10px;font-weight:600;font-family:var(--mono)}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:99px;font-size:10px;font-weight:600}
 .badge-new{background:rgba(59,130,246,.15);color:var(--accent2)}
 .badge-proc{background:rgba(245,158,11,.15);color:#fbbf24}
 .badge-done{background:rgba(16,185,129,.15);color:var(--green2)}
@@ -162,8 +156,8 @@ tr:hover td{background:var(--bg3);color:var(--text1)}
 #map-container{height:400px;border-radius:var(--r);overflow:hidden;border:1px solid var(--border);position:relative}
 .leaflet-container{background:#1a1a2a}
 .map-overlay{position:absolute;top:12px;left:12px;z-index:1000;background:var(--bg1);border:1px solid var(--border);border-radius:var(--r2);padding:10px 14px;font-size:12px;color:var(--text2);pointer-events:none;backdrop-filter:blur(10px)}
-.coord-display{font-family:var(--mono);font-size:11px;color:var(--cyan);margin-top:4px}
-.map-marker-count{background:var(--accent);color:#fff;font-size:11px;font-family:var(--mono);padding:4px 10px;border-radius:99px;margin-top:4px;display:inline-block}
+.coord-display{font-size:11px;color:var(--cyan);margin-top:4px;font-weight:500}
+.map-marker-count{background:var(--accent);color:#fff;font-size:11px;padding:4px 10px;border-radius:99px;margin-top:4px;display:inline-block;font-weight:600}
 
 /* ALERT */
 .alert{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border-radius:var(--r2);font-size:13px;margin-bottom:16px}
@@ -177,45 +171,9 @@ tr:hover td{background:var(--bg3);color:var(--text1)}
 .bar-label{width:80px;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:11px}
 .bar-track{flex:1;height:8px;background:var(--bg4);border-radius:4px;overflow:hidden}
 .bar-fill{height:100%;border-radius:4px;transition:width 1s cubic-bezier(.22,.68,0,1.2)}
-.bar-val{font-family:var(--mono);font-size:11px;color:var(--text3);min-width:28px;text-align:right}
+.bar-val{font-size:11px;color:var(--text3);min-width:28px;text-align:right;font-weight:600}
 
-/* MINI MAP (dashboard preview) */
-.mini-stat-row{display:flex;gap:8px;margin-top:12px}
-.mini-stat{flex:1;text-align:center;background:var(--bg3);border-radius:var(--r2);padding:10px;border:1px solid var(--border)}
-.mini-stat-n{font-size:18px;font-weight:700;font-family:var(--mono)}
-.mini-stat-l{font-size:10px;color:var(--text3);margin-top:2px;letter-spacing:.5px}
-
-
-/* DIVIDER */
 .divider{height:1px;background:var(--border);margin:20px 0}
-
-/* TOOLTIP */
-.tooltip{position:relative}
-.tooltip::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--bg4);border:1px solid var(--border2);color:var(--text1);font-size:11px;padding:4px 8px;border-radius:4px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .15s}
-.tooltip:hover::after{opacity:1}
-
-/* ANIMATE */
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.page.active .card,.page.active .stat-card{animation:fadeUp .4s ease both}
-.page.active .stat-card:nth-child(1){animation-delay:.05s}
-.page.active .stat-card:nth-child(2){animation-delay:.1s}
-.page.active .stat-card:nth-child(3){animation-delay:.15s}
-.page.active .stat-card:nth-child(4){animation-delay:.2s}
-
-/* MOBILE MENU TOGGLE */
-.menu-toggle{display:none;background:none;border:none;color:var(--text1);font-size:20px;cursor:pointer;padding:8px}
-.mobile-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:199}
-
-/* INSTALL BANNER */
-.install-banner{background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(139,92,246,.1));border:1px solid rgba(59,130,246,.25);border-radius:var(--r);padding:14px 20px;margin-bottom:24px;display:flex;align-items:center;gap:16px}
-.install-text{flex:1;font-size:13px}
-.install-text strong{color:var(--accent2)}
-
-/* SEARCH BAR */
-.search-bar{display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:8px 14px;margin-bottom:16px}
-.search-bar input{background:none;border:none;outline:none;color:var(--text1);font-family:var(--sans);font-size:13px;flex:1}
-.search-bar input::placeholder{color:var(--text3)}
-.search-icon{color:var(--text3);font-size:14px}
 
 /* STATUS TIMELINE */
 .timeline{display:flex;flex-direction:column;gap:0}
@@ -224,18 +182,16 @@ tr:hover td{background:var(--bg3);color:var(--text1)}
 .tl-dot{width:8px;height:8px;border-radius:50%;margin-top:5px;flex-shrink:0}
 .tl-content{flex:1}
 .tl-title{font-size:13px;font-weight:500}
-.tl-time{font-size:11px;color:var(--text3);font-family:var(--mono);margin-top:2px}
+.tl-time{font-size:11px;color:var(--text3);margin-top:2px}
 
-/* PROGRESS */
 .progress-bar{height:4px;background:var(--bg4);border-radius:2px;overflow:hidden;margin-top:6px}
 .progress-fill{height:100%;border-radius:2px;transition:width 1s ease}
 
 /* MAP SEARCH */
 .map-search-wrap{position:relative;margin-bottom:10px}
-.map-search-input{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r2);padding:9px 40px 9px 36px;color:var(--text1);font-family:var(--sans);font-size:13px;outline:none;transition:border-color .2s}
+.map-search-input{width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r2);padding:9px 80px 9px 14px;color:var(--text1);font-family:var(--sans);font-size:13px;outline:none;transition:border-color .2s}
 .map-search-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(59,130,246,.1)}
 .map-search-input::placeholder{color:var(--text3)}
-.map-search-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:14px;pointer-events:none}
 .map-search-btn{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:var(--accent);border:none;border-radius:6px;color:#fff;padding:4px 10px;font-size:12px;cursor:pointer;font-family:var(--sans);font-weight:600;transition:background .15s}
 .map-search-btn:hover{background:#2563eb}
 .map-search-btn:disabled{background:var(--bg4);color:var(--text3);cursor:not-allowed}
@@ -247,15 +203,42 @@ tr:hover td{background:var(--bg3);color:var(--text1)}
 .map-result-item .result-name{font-weight:600;color:var(--text1);font-size:13px}
 .map-result-item .result-detail{color:var(--text3);font-size:11px;margin-top:2px}
 .map-search-empty{padding:14px;text-align:center;color:var(--text3);font-size:12px}
-.map-search-loading{padding:14px;text-align:center;color:var(--accent2);font-size:12px;font-family:var(--mono)}
+.map-search-loading{padding:14px;text-align:center;color:var(--accent2);font-size:12px}
 
-/* SCROLL TO TOP */
-.scroll-top{position:fixed;bottom:24px;right:24px;background:var(--bg3);border:1px solid var(--border2);border-radius:99px;padding:10px 14px;cursor:pointer;font-size:14px;color:var(--text2);transition:all .2s;z-index:500;display:none}
+/* SEARCH BAR */
+.search-bar{display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:8px 14px;margin-bottom:16px}
+.search-bar input{background:none;border:none;outline:none;color:var(--text1);font-family:var(--sans);font-size:13px;flex:1}
+.search-bar input::placeholder{color:var(--text3)}
+
+/* SCROLL TOP */
+.scroll-top{position:fixed;bottom:24px;right:24px;background:var(--bg3);border:1px solid var(--border2);border-radius:99px;padding:10px 16px;cursor:pointer;font-size:13px;font-weight:600;color:var(--text2);transition:all .2s;z-index:500;display:none}
 .scroll-top:hover{background:var(--bg4);color:var(--text1)}
 
 /* TOAST */
-#toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--bg3);border:1px solid var(--green);color:var(--green2);font-size:13px;padding:12px 24px;border-radius:99px;font-weight:500;transition:transform .35s cubic-bezier(.34,1.56,.64,1);z-index:9999;pointer-events:none;white-space:nowrap}
+#toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--bg3);border:1px solid var(--green);color:var(--green2);font-size:13px;padding:12px 24px;border-radius:99px;font-weight:500;transition:transform .35s cubic-bezier(.34,1.56,.64,1);z-index:9999;pointer-events:none;white-space:nowrap;font-family:var(--sans)}
 #toast.show{transform:translateX(-50%) translateY(0)}
+
+/* INSTALL BANNER */
+.install-banner{background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(139,92,246,.1));border:1px solid rgba(59,130,246,.25);border-radius:var(--r);padding:14px 20px;margin-bottom:24px;display:flex;align-items:center;gap:16px}
+.install-text{flex:1;font-size:13px}
+.install-text strong{color:var(--accent2)}
+
+/* MOBILE */
+.menu-toggle{display:none;background:none;border:none;color:var(--text1);font-size:20px;cursor:pointer;padding:8px}
+.mobile-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:199}
+
+/* ANIMATE */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.page.active .card,.page.active .stat-card{animation:fadeUp .4s ease both}
+.page.active .stat-card:nth-child(1){animation-delay:.05s}
+.page.active .stat-card:nth-child(2){animation-delay:.1s}
+.page.active .stat-card:nth-child(3){animation-delay:.15s}
+.page.active .stat-card:nth-child(4){animation-delay:.2s}
+
+/* Card heading util */
+.card-heading{font-size:13px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.card-heading .ch-icon{width:18px;height:18px;flex-shrink:0}
+.card-heading .ch-icon svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;color:var(--text3)}
 
 @media(max-width:900px){
   .sidebar{position:fixed;left:-240px;top:0;z-index:200;transition:left .25s;height:100%;min-height:100vh}
@@ -264,20 +247,18 @@ tr:hover td{background:var(--bg3);color:var(--text1)}
   .menu-toggle{display:block}
   .stat-grid{grid-template-columns:1fr 1fr}
   .two-col,.three-col{grid-template-columns:1fr}
-  .sensor-grid{grid-template-columns:1fr 1fr}
   .content{padding:16px}
   .topbar{padding:0 16px}
 }
 @media(max-width:480px){
   .stat-grid{grid-template-columns:1fr}
   .two-field{grid-template-columns:1fr}
-  .sensor-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
-<div id="toast">✓ Laporan berhasil dikirim!</div>
+<div id="toast">Laporan berhasil dikirim!</div>
 
 <div class="app">
 
@@ -285,26 +266,30 @@ tr:hover td{background:var(--bg3);color:var(--text1)}
 <aside class="sidebar" id="sidebar">
   <div class="logo">
     <div class="logo-mark">
-      <div class="logo-icon">🛣️</div>
+      <div class="logo-icon">RW</div>
       <div class="logo-name">RoadWatch</div>
     </div>
     <div class="logo-tag">SMART ROAD MONITOR v1.0</div>
   </div>
   <nav class="nav">
-    <div class="nav-label">UTAMA</div>
+    <div class="nav-label">Utama</div>
     <div class="nav-item active" onclick="goPage('dashboard')">
-      <span class="nav-icon">📊</span> Dashboard
+      <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>
+      Dashboard
     </div>
     <div class="nav-item" onclick="goPage('laporan')">
-      <span class="nav-icon">📝</span> Buat Laporan
+      <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg></span>
+      Buat Laporan
     </div>
-    <div class="nav-label">DATA</div>
+    <div class="nav-label">Data</div>
     <div class="nav-item" onclick="goPage('riwayat')">
-      <span class="nav-icon">📋</span> Riwayat Laporan
+      <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+      Riwayat Laporan
       <span class="nav-badge" id="badge-count">0</span>
     </div>
     <div class="nav-item" onclick="goPage('tentang')">
-      <span class="nav-icon">ℹ️</span> Tentang
+      <span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+      Tentang
     </div>
   </nav>
   <div class="sidebar-footer">
@@ -320,13 +305,13 @@ tr:hover td{background:var(--bg3);color:var(--text1)}
 
   <!-- TOPBAR -->
   <div class="topbar">
-    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+    <button class="menu-toggle" onclick="toggleSidebar()">&#9776;</button>
     <div style="flex:1">
       <div class="topbar-title">Smart Road Monitoring System</div>
     </div>
     <div style="display:flex;align-items:center;gap:8px">
       <div class="live-dot"></div>
-      <span style="font-size:12px;color:var(--green2)">Live</span>
+      <span style="font-size:12px;color:var(--green2);font-weight:500">Live</span>
     </div>
     <div class="topbar-time" id="clock">00:00:00</div>
   </div>
@@ -342,36 +327,43 @@ tr:hover td{background:var(--bg3);color:var(--text1)}
       </div>
 
       <div class="install-banner" id="install-banner" style="display:none">
-        <span style="font-size:22px">📲</span>
         <div class="install-text">
           <strong>Install RoadWatch</strong> — Tambahkan ke layar utama untuk akses cepat seperti aplikasi native.
         </div>
         <button class="btn btn-primary btn-sm" id="install-btn">Install</button>
-        <button class="btn btn-ghost btn-sm" onclick="document.getElementById('install-banner').style.display='none'">✕</button>
+        <button class="btn btn-ghost btn-sm" onclick="document.getElementById('install-banner').style.display='none'">Tutup</button>
       </div>
 
       <div class="stat-grid">
         <div class="stat-card blue">
-          <div class="stat-icon">📋</div>
-          <div class="stat-label">TOTAL LAPORAN</div>
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
+          </div>
+          <div class="stat-label">Total Laporan</div>
           <div class="stat-val" id="dash-total">0</div>
           <div class="stat-change up" id="dash-total-change">— laporan masuk</div>
         </div>
         <div class="stat-card yellow">
-          <div class="stat-icon">⏳</div>
-          <div class="stat-label">MENUNGGU</div>
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+          </div>
+          <div class="stat-label">Menunggu</div>
           <div class="stat-val" id="dash-pending">0</div>
           <div class="stat-change">Perlu ditindak</div>
         </div>
         <div class="stat-card green">
-          <div class="stat-icon">✅</div>
-          <div class="stat-label">SELESAI</div>
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
+          </div>
+          <div class="stat-label">Selesai</div>
           <div class="stat-val" id="dash-done">0</div>
           <div class="stat-change up">Berhasil diperbaiki</div>
         </div>
         <div class="stat-card red">
-          <div class="stat-icon">🚨</div>
-          <div class="stat-label">KRITIS</div>
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div class="stat-label">Kritis</div>
           <div class="stat-val" id="dash-kritis">0</div>
           <div class="stat-change">Butuh perhatian</div>
         </div>
@@ -379,16 +371,18 @@ tr:hover td{background:var(--bg3);color:var(--text1)}
 
       <div class="two-col">
         <div class="card">
-          <div style="font-size:13px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px">
-            <span>📊</span> Distribusi Kerusakan per Wilayah
+          <div class="card-heading">
+            <span class="ch-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+            Distribusi Kerusakan per Wilayah
           </div>
           <div class="chart-bar-group" id="chart-wilayah">
             <div style="color:var(--text3);font-size:12px">Belum ada data laporan</div>
           </div>
         </div>
         <div class="card">
-          <div style="font-size:13px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px">
-            <span>🕐</span> Laporan Terbaru
+          <div class="card-heading">
+            <span class="ch-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></span>
+            Laporan Terbaru
           </div>
           <div class="timeline" id="recent-timeline">
             <div style="color:var(--text3);font-size:12px">Belum ada laporan masuk</div>
@@ -397,24 +391,25 @@ tr:hover td{background:var(--bg3);color:var(--text1)}
       </div>
 
       <div class="card">
-        <div style="font-size:13px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px">
-          <span>📈</span> Status Penanganan Keseluruhan
+        <div class="card-heading">
+          <span class="ch-icon"><svg viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></span>
+          Status Penanganan Keseluruhan
         </div>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
           <div>
-            <div style="font-size:11px;color:var(--text3);margin-bottom:6px">Baru Dilaporkan</div>
+            <div style="font-size:11px;color:var(--text3);margin-bottom:6px;font-weight:500">Baru Dilaporkan</div>
             <div class="progress-bar"><div class="progress-fill" id="prog-baru" style="width:0%;background:var(--accent)"></div></div>
-            <div style="font-size:11px;color:var(--text2);margin-top:4px;font-family:var(--mono)" id="pct-baru">0%</div>
+            <div style="font-size:11px;color:var(--text2);margin-top:4px;font-weight:600" id="pct-baru">0%</div>
           </div>
           <div>
-            <div style="font-size:11px;color:var(--text3);margin-bottom:6px">Sedang Diproses</div>
+            <div style="font-size:11px;color:var(--text3);margin-bottom:6px;font-weight:500">Sedang Diproses</div>
             <div class="progress-bar"><div class="progress-fill" id="prog-proses" style="width:0%;background:var(--yellow)"></div></div>
-            <div style="font-size:11px;color:var(--text2);margin-top:4px;font-family:var(--mono)" id="pct-proses">0%</div>
+            <div style="font-size:11px;color:var(--text2);margin-top:4px;font-weight:600" id="pct-proses">0%</div>
           </div>
           <div>
-            <div style="font-size:11px;color:var(--text3);margin-bottom:6px">Selesai Diperbaiki</div>
+            <div style="font-size:11px;color:var(--text3);margin-bottom:6px;font-weight:500">Selesai Diperbaiki</div>
             <div class="progress-bar"><div class="progress-fill" id="prog-selesai" style="width:0%;background:var(--green)"></div></div>
-            <div style="font-size:11px;color:var(--text2);margin-top:4px;font-family:var(--mono)" id="pct-selesai">0%</div>
+            <div style="font-size:11px;color:var(--text2);margin-top:4px;font-weight:600" id="pct-selesai">0%</div>
           </div>
         </div>
       </div>
@@ -429,7 +424,10 @@ tr:hover td{background:var(--bg3);color:var(--text1)}
 
       <div class="two-col">
         <div class="card">
-          <div style="font-size:13px;font-weight:600;margin-bottom:20px">📝 Detail Laporan</div>
+          <div class="card-heading">
+            <span class="ch-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></span>
+            Detail Laporan
+          </div>
           <div class="form-grid">
             <div class="two-field">
               <div class="field">
@@ -454,20 +452,20 @@ tr:hover td{background:var(--bg3);color:var(--text1)}
                 <label>Tingkat Kerusakan *</label>
                 <select id="f-tingkat">
                   <option value="">-- Pilih --</option>
-                  <option value="Ringan">🟡 Ringan (< 20cm)</option>
-                  <option value="Sedang">🟠 Sedang (20-50cm)</option>
-                  <option value="Berat">🔴 Berat (> 50cm)</option>
-                  <option value="Kritis">💀 Kritis / Berbahaya</option>
+                  <option value="Ringan">Ringan (kurang dari 20cm)</option>
+                  <option value="Sedang">Sedang (20-50cm)</option>
+                  <option value="Berat">Berat (lebih dari 50cm)</option>
+                  <option value="Kritis">Kritis / Berbahaya</option>
                 </select>
               </div>
               <div class="field">
                 <label>Jenis Kerusakan</label>
                 <select id="f-jenis">
-                  <option value="Berlubang">🕳️ Jalan Berlubang</option>
-                  <option value="Retak">〰️ Retak/Pecah</option>
-                  <option value="Ambles">⬇️ Jalan Ambles</option>
-                  <option value="Genangan">💧 Genangan Air</option>
-                  <option value="Lainnya">❓ Lainnya</option>
+                  <option value="Berlubang">Jalan Berlubang</option>
+                  <option value="Retak">Retak / Pecah</option>
+                  <option value="Ambles">Jalan Ambles</option>
+                  <option value="Genangan">Genangan Air</option>
+                  <option value="Lainnya">Lainnya</option>
                 </select>
               </div>
             </div>
@@ -484,25 +482,30 @@ tr:hover td{background:var(--bg3);color:var(--text1)}
             </div>
           </div>
           <div style="margin-top:20px;display:flex;gap:10px">
-            <button class="btn btn-primary btn-lg" onclick="submitLaporan()"> Kirim Laporan</button>
-            <button class="btn btn-ghost" onclick="resetForm()">↺ Reset</button>
+            <button class="btn btn-primary btn-lg" onclick="submitLaporan()">Kirim Laporan</button>
+            <button class="btn btn-ghost" onclick="resetForm()">Reset</button>
           </div>
         </div>
 
         <div style="display:flex;flex-direction:column;gap:16px">
           <div class="card">
-            <div style="font-size:13px;font-weight:600;margin-bottom:12px">📍 Tandai Lokasi di Peta</div>
+            <div class="card-heading">
+              <span class="ch-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+              Tandai Lokasi di Peta
+            </div>
             <div class="map-search-wrap" id="map-search-wrap">
-              <span class="map-search-icon">🔍</span>
               <input class="map-search-input" id="map-search-q" type="text" placeholder="Cari nama jalan, kelurahan, kota..." autocomplete="off" onkeydown="if(event.key==='Enter')searchLocation()">
               <button class="map-search-btn" id="map-search-btn" onclick="searchLocation()">Cari</button>
               <div class="map-search-results" id="map-search-results"></div>
             </div>
             <div id="map-form" style="height:260px;border-radius:8px;overflow:hidden;border:1px solid var(--border)"></div>
-            <div style="margin-top:8px;font-size:11px;color:var(--text3)">🔍 Ketik untuk cari lokasi, atau 👆 klik langsung di peta</div>
+            <div style="margin-top:8px;font-size:11px;color:var(--text3)">Ketik untuk cari lokasi, atau klik langsung di peta</div>
           </div>
           <div class="card">
-            <div style="font-size:13px;font-weight:600;margin-bottom:12px">📸 Tips Pelaporan</div>
+            <div class="card-heading">
+              <span class="ch-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+              Tips Pelaporan
+            </div>
             <div class="timeline">
               <div class="tl-item"><div class="tl-dot" style="background:var(--accent)"></div><div class="tl-content"><div class="tl-title" style="font-size:12px">Tandai lokasi tepat di peta</div></div></div>
               <div class="tl-item"><div class="tl-dot" style="background:var(--yellow)"></div><div class="tl-content"><div class="tl-title" style="font-size:12px">Pilih tingkat kerusakan dengan jujur</div></div></div>
@@ -522,7 +525,7 @@ tr:hover td{background:var(--bg3);color:var(--text1)}
       </div>
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap">
         <div class="search-bar" style="flex:1;min-width:200px">
-          <span class="search-icon">🔍</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text3);flex-shrink:0"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           <input type="text" id="search-input" placeholder="Cari laporan..." oninput="filterLaporan()">
         </div>
         <select id="filter-status" onchange="filterLaporan()" style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:8px 14px;color:var(--text1);font-size:13px;font-family:var(--sans);cursor:pointer;outline:none">
@@ -531,7 +534,7 @@ tr:hover td{background:var(--bg3);color:var(--text1)}
           <option value="Diproses">Diproses</option>
           <option value="Selesai">Selesai</option>
         </select>
-        <button class="btn btn-danger btn-sm" onclick="clearAllData()">🗑️ Hapus Semua</button>
+        <button class="btn btn-danger btn-sm" onclick="clearAllData()">Hapus Semua</button>
       </div>
       <div class="card" style="padding:0;overflow:hidden">
         <div class="table-wrap">
@@ -539,13 +542,13 @@ tr:hover td{background:var(--bg3);color:var(--text1)}
             <thead>
               <tr>
                 <th>#</th>
-                <th>TANGGAL</th>
-                <th>PELAPOR</th>
-                <th>LOKASI</th>
-                <th>JENIS</th>
-                <th>TINGKAT</th>
-                <th>STATUS</th>
-                <th>AKSI</th>
+                <th>Tanggal</th>
+                <th>Pelapor</th>
+                <th>Lokasi</th>
+                <th>Jenis</th>
+                <th>Tingkat</th>
+                <th>Status</th>
+                <th>Aksi</th>
               </tr>
             </thead>
             <tbody id="laporan-tbody">
@@ -560,17 +563,19 @@ tr:hover td{background:var(--bg3);color:var(--text1)}
     <div class="page" id="page-tentang">
       <div class="section-head">
         <div class="section-title">Tentang RoadWatch</div>
-        <div class="section-desc">Smart Road Monitoring System — Sistem Monitoring Jalan Berbasis Web APK</div>
+        <div class="section-desc">Smart Road Monitoring System — Sistem Monitoring Jalan Berbasis Web</div>
       </div>
       <div class="two-col">
         <div class="card">
-          <div style="font-size:28px;margin-bottom:12px">🛣️</div>
+          <div style="width:40px;height:40px;background:var(--accent);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;box-shadow:0 0 20px rgba(59,130,246,0.3)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l2-8h14l2 8"/><path d="M5 9V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2"/><circle cx="8.5" cy="17" r="1.5"/><circle cx="15.5" cy="17" r="1.5"/></svg>
+          </div>
           <div style="font-size:18px;font-weight:700;margin-bottom:8px">Smart Road Monitoring System</div>
           <div style="font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:16px">
             RoadWatch adalah platform monitoring jalan berbasis web yang memungkinkan masyarakat melaporkan kerusakan jalan secara cepat dan mudah. Sistem ini dirancang sebagai prototype Smart City / Smart Government yang dapat digunakan oleh pemerintah daerah untuk mempercepat penanganan infrastruktur jalan.
           </div>
           <div class="divider"></div>
-          <div style="font-size:13px;font-weight:600;margin-bottom:12px">🎯 Tujuan Aplikasi</div>
+          <div style="font-size:13px;font-weight:600;margin-bottom:12px">Tujuan Aplikasi</div>
           <div class="timeline">
             <div class="tl-item"><div class="tl-dot" style="background:var(--accent)"></div><div class="tl-content"><div class="tl-title" style="font-size:12px">Membantu masyarakat melaporkan jalan berlubang</div></div></div>
             <div class="tl-item"><div class="tl-dot" style="background:var(--green)"></div><div class="tl-content"><div class="tl-title" style="font-size:12px">Memonitor kondisi jalan secara real-time</div></div></div>
@@ -578,35 +583,46 @@ tr:hover td{background:var(--bg3);color:var(--text1)}
             <div class="tl-item"><div class="tl-dot" style="background:var(--purple)"></div><div class="tl-content"><div class="tl-title" style="font-size:12px">Prototype smart city / smart government</div></div></div>
           </div>
         </div>
-        
-            
+        <div class="card">
+          <div style="font-size:13px;font-weight:600;margin-bottom:16px">Informasi Sistem</div>
+          <div class="timeline">
+            <div class="tl-item"><div class="tl-dot" style="background:var(--cyan)"></div><div class="tl-content"><div class="tl-title" style="font-size:12px">Versi: 1.0.0</div></div></div>
+            <div class="tl-item"><div class="tl-dot" style="background:var(--accent)"></div><div class="tl-content"><div class="tl-title" style="font-size:12px">Peta: OpenStreetMap + Leaflet.js</div></div></div>
+            <div class="tl-item"><div class="tl-dot" style="background:var(--green)"></div><div class="tl-content"><div class="tl-title" style="font-size:12px">Penyimpanan: LocalStorage Browser</div></div></div>
+            <div class="tl-item"><div class="tl-dot" style="background:var(--purple)"></div><div class="tl-content"><div class="tl-title" style="font-size:12px">PWA-ready: Dapat diinstall di perangkat</div></div></div>
+          </div>
+          <div class="divider"></div>
+          <div id="storage-info" style="font-size:11px;color:var(--text3);font-weight:500"></div>
         </div>
       </div>
     </div>
 
-  </div><!-- /content -->
+  </div>
 </main>
-</div><!-- /app -->
+</div>
 
-<div class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+<div class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593; Atas</div>
 
 <script>
-// ============ STATE ============
 const DB_KEY = 'roadwatch_laporan';
 let laporan = JSON.parse(localStorage.getItem(DB_KEY) || '[]');
-let mapForm = null, mainMap = null, formMarker = null;
-let allMapMarkers = [];
+let mapForm = null, formMarker = null;
 let filteredData = [...laporan];
 let deferredInstall = null;
+let searchResults = [];
 
-// ============ NAVIGATION ============
 function goPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   document.getElementById('page-' + id).classList.add('active');
-  event && event.currentTarget && event.currentTarget.classList.add('active');
   document.querySelectorAll('.nav-item').forEach(n => {
-    if (n.textContent.toLowerCase().includes(id === 'dashboard' ? 'dashboard' : id === 'laporan' ? 'buat' : id === 'riwayat' ? 'riwayat' : 'tentang')) n.classList.add('active');
+    const txt = n.textContent.toLowerCase();
+    if (
+      (id === 'dashboard' && txt.includes('dashboard')) ||
+      (id === 'laporan' && txt.includes('buat')) ||
+      (id === 'riwayat' && txt.includes('riwayat')) ||
+      (id === 'tentang' && txt.includes('tentang'))
+    ) n.classList.add('active');
   });
   closeSidebar();
   if (id === 'laporan') setTimeout(initFormMap, 100);
@@ -616,13 +632,6 @@ function goPage(id) {
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
-// Nav click handler
-document.querySelectorAll('.nav-item').forEach((item, i) => {
-  const pages = ['dashboard','laporan','riwayat','tentang'];
-  // already using onclick attributes
-});
-
-// ============ SIDEBAR ============
 function toggleSidebar() {
   document.getElementById('sidebar').classList.toggle('open');
   document.getElementById('overlay').classList.toggle('open');
@@ -632,7 +641,6 @@ function closeSidebar() {
   document.getElementById('overlay').classList.remove('open');
 }
 
-// ============ CLOCK ============
 function updateClock() {
   const now = new Date();
   document.getElementById('clock').textContent = now.toLocaleTimeString('id-ID');
@@ -640,24 +648,20 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 
-// ============ SAVE / LOAD ============
 function saveData() {
   localStorage.setItem(DB_KEY, JSON.stringify(laporan));
   document.getElementById('badge-count').textContent = laporan.length;
 }
 
-// ============ SUBMIT LAPORAN ============
 function submitLaporan() {
   const nama = document.getElementById('f-nama').value.trim();
   const jalan = document.getElementById('f-jalan').value.trim();
   const desc = document.getElementById('f-desc').value.trim();
   const tingkat = document.getElementById('f-tingkat').value;
-
   if (!nama || !jalan || !desc || !tingkat) {
-    showToast('⚠️ Lengkapi semua field wajib!', 'var(--yellow)');
+    showToast('Lengkapi semua field wajib!', 'var(--yellow)');
     return;
   }
-
   const entry = {
     id: Date.now(),
     no: laporan.length + 1,
@@ -673,13 +677,11 @@ function submitLaporan() {
     status: 'Baru',
     waktu: new Date().toISOString()
   };
-
   laporan.unshift(entry);
   saveData();
   resetForm();
-  showToast('✓ Laporan berhasil dikirim!');
+  showToast('Laporan berhasil dikirim!');
   updateDashboard();
-
   setTimeout(() => goPage('riwayat'), 1200);
 }
 
@@ -692,7 +694,6 @@ function resetForm() {
   if (formMarker && mapForm) { mapForm.removeLayer(formMarker); formMarker = null; }
 }
 
-// ============ MAPS ============
 function initFormMap() {
   if (mapForm) return;
   waitLeaflet(() => {
@@ -706,14 +707,10 @@ function initFormMap() {
 
 function placeFormMarker(lat, lng) {
   if (formMarker) mapForm.removeLayer(formMarker);
-  formMarker = L.marker([lat, lng], {icon: createIcon('🔴')}).addTo(mapForm);
+  formMarker = L.marker([lat, lng], {icon: createIcon()}).addTo(mapForm);
   document.getElementById('f-lat').value = lat.toFixed(6);
   document.getElementById('f-lng').value = lng.toFixed(6);
 }
-
-// ===== MAP SEARCH (Nominatim) =====
-let searchTimeout = null;
-let searchResults = [];
 
 function searchLocation() {
   const q = document.getElementById('map-search-q').value.trim();
@@ -722,10 +719,8 @@ function searchLocation() {
   const resultsEl = document.getElementById('map-search-results');
   btn.disabled = true;
   btn.textContent = '...';
-  resultsEl.innerHTML = '<div class="map-search-loading">⏳ Mencari lokasi...</div>';
+  resultsEl.innerHTML = '<div class="map-search-loading">Mencari lokasi...</div>';
   resultsEl.classList.add('open');
-
-  // Nominatim geocoding – gratis, no API key
   fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(q)}&countrycodes=id&limit=6&addressdetails=1`, {
     headers: { 'Accept-Language': 'id', 'User-Agent': 'RoadWatch/1.0' }
   })
@@ -734,7 +729,7 @@ function searchLocation() {
     btn.disabled = false;
     btn.textContent = 'Cari';
     if (!data.length) {
-      resultsEl.innerHTML = '<div class="map-search-empty">😕 Lokasi tidak ditemukan. Coba kata kunci lain.</div>';
+      resultsEl.innerHTML = '<div class="map-search-empty">Lokasi tidak ditemukan. Coba kata kunci lain.</div>';
       return;
     }
     searchResults = data;
@@ -742,7 +737,7 @@ function searchLocation() {
       const name = item.name || item.display_name.split(',')[0];
       const detail = item.display_name.split(',').slice(1, 4).join(',').trim();
       return `<div class="map-result-item" onclick="selectLocation(${i})">
-        <div class="result-name">📍 ${name}</div>
+        <div class="result-name">${name}</div>
         <div class="result-detail">${detail}</div>
       </div>`;
     }).join('');
@@ -750,7 +745,7 @@ function searchLocation() {
   .catch(() => {
     btn.disabled = false;
     btn.textContent = 'Cari';
-    resultsEl.innerHTML = '<div class="map-search-empty">❌ Gagal terhubung. Periksa koneksi internet.</div>';
+    resultsEl.innerHTML = '<div class="map-search-empty">Gagal terhubung. Periksa koneksi internet.</div>';
   });
 }
 
@@ -761,38 +756,29 @@ function selectLocation(idx) {
   const lng = parseFloat(item.lon);
   const resultsEl = document.getElementById('map-search-results');
   resultsEl.classList.remove('open');
-
-  // Update input field nama jalan jika kosong
   const namaJalan = document.getElementById('f-jalan');
   if (!namaJalan.value.trim()) {
     namaJalan.value = item.display_name.split(',').slice(0, 2).join(',').trim();
   }
-
-  // Update wilayah jika kosong
   const wilayah = document.getElementById('f-wilayah');
   if (!wilayah.value.trim() && item.address) {
     const addr = item.address;
     wilayah.value = [addr.suburb || addr.village || addr.hamlet, addr.city_district || addr.county, addr.city || addr.town].filter(Boolean).slice(0,2).join(', ');
   }
-
   document.getElementById('map-search-q').value = item.display_name.split(',').slice(0,2).join(',').trim();
-
   waitLeaflet(() => {
     if (!mapForm) { initFormMap(); setTimeout(() => { mapForm.setView([lat, lng], 17); placeFormMarker(lat, lng); }, 500); return; }
     mapForm.setView([lat, lng], 17);
     placeFormMarker(lat, lng);
   });
-  showToast('📍 Lokasi ditemukan!');
+  showToast('Lokasi ditemukan!');
 }
 
-// Tutup dropdown kalau klik di luar
 document.addEventListener('click', function(e) {
   const wrap = document.getElementById('map-search-wrap');
   const res = document.getElementById('map-search-results');
   if (wrap && !wrap.contains(e.target)) res && res.classList.remove('open');
 });
-
-
 
 function addTileLayer(map) {
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -801,12 +787,12 @@ function addTileLayer(map) {
   }).addTo(map);
 }
 
-function createIcon(emoji) {
+function createIcon() {
   return L.divIcon({
-    html: `<div style="font-size:20px;text-shadow:0 2px 4px rgba(0,0,0,.5)">${emoji}</div>`,
+    html: `<div style="width:14px;height:14px;background:#ef4444;border-radius:50%;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.5)"></div>`,
     className: '',
-    iconSize: [24, 24],
-    iconAnchor: [12, 20]
+    iconSize: [14, 14],
+    iconAnchor: [7, 7]
   });
 }
 
@@ -815,21 +801,16 @@ function waitLeaflet(cb) {
   else setTimeout(() => waitLeaflet(cb), 200);
 }
 
-
-// ============ DASHBOARD ============
 function updateDashboard() {
   const total = laporan.length;
   const pending = laporan.filter(l => l.status === 'Baru').length;
   const done = laporan.filter(l => l.status === 'Selesai').length;
   const kritis = laporan.filter(l => l.tingkat === 'Kritis').length;
-
   document.getElementById('dash-total').textContent = total;
   document.getElementById('dash-pending').textContent = pending;
   document.getElementById('dash-done').textContent = done;
   document.getElementById('dash-kritis').textContent = kritis;
   document.getElementById('dash-total-change').textContent = total + ' laporan masuk';
-
-  // Progress
   if (total > 0) {
     const baru = laporan.filter(l => l.status === 'Baru').length;
     const proses = laporan.filter(l => l.status === 'Diproses').length;
@@ -842,8 +823,6 @@ function updateDashboard() {
     document.getElementById('pct-proses').textContent = pProses + '%';
     document.getElementById('pct-selesai').textContent = pSelesai + '%';
   }
-
-  // Chart wilayah
   const wilayahCount = {};
   laporan.forEach(l => {
     const w = l.wilayah || 'Tidak diisi';
@@ -855,13 +834,11 @@ function updateDashboard() {
   document.getElementById('chart-wilayah').innerHTML = sorted.length
     ? sorted.map(([w,v], i) => `
         <div class="bar-row">
-          <div class="bar-label" title="${w}">${w.length > 12 ? w.slice(0,12)+'…' : w}</div>
+          <div class="bar-label" title="${w}">${w.length > 12 ? w.slice(0,12)+'...' : w}</div>
           <div class="bar-track"><div class="bar-fill" style="width:${Math.round(v/maxVal*100)}%;background:${colors[i%colors.length]}"></div></div>
           <div class="bar-val">${v}</div>
         </div>`).join('')
     : '<div style="color:var(--text3);font-size:12px">Belum ada data laporan</div>';
-
-  // Recent timeline
   const recent = laporan.slice(0, 5);
   document.getElementById('recent-timeline').innerHTML = recent.length
     ? recent.map(l => `
@@ -869,7 +846,7 @@ function updateDashboard() {
           <div class="tl-dot" style="background:${l.tingkat==='Kritis'?'var(--red)':l.tingkat==='Berat'?'var(--yellow)':l.tingkat==='Sedang'?'var(--accent)':'var(--green)'}"></div>
           <div class="tl-content">
             <div class="tl-title" style="font-size:12px">${l.jalan}</div>
-            <div class="tl-time">${l.tingkat} • ${l.nama} • ${timeAgo(l.waktu)}</div>
+            <div class="tl-time">${l.tingkat} &bull; ${l.nama} &bull; ${timeAgo(l.waktu)}</div>
           </div>
         </div>`).join('')
     : '<div style="color:var(--text3);font-size:12px">Belum ada laporan masuk</div>';
@@ -884,7 +861,6 @@ function timeAgo(iso) {
   return Math.floor(diff/86400) + ' hari lalu';
 }
 
-// ============ TABLE ============
 function renderTable(data) {
   const tbody = document.getElementById('laporan-tbody');
   if (!data.length) {
@@ -893,7 +869,7 @@ function renderTable(data) {
   }
   tbody.innerHTML = data.map(l => `
     <tr>
-      <td style="font-family:var(--mono);font-size:11px;color:var(--text3)">#${l.no}</td>
+      <td style="font-size:11px;color:var(--text3);font-weight:600">#${l.no}</td>
       <td style="font-size:11px;white-space:nowrap">${formatDate(l.waktu)}</td>
       <td style="font-weight:500">${l.nama}</td>
       <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${l.jalan}">${l.jalan}</td>
@@ -901,9 +877,9 @@ function renderTable(data) {
       <td><span class="badge ${l.tingkat==='Kritis'?'badge-reject':l.tingkat==='Berat'?'badge-proc':l.tingkat==='Sedang'?'badge-new':'badge-done'}">${l.tingkat}</span></td>
       <td><span class="badge ${l.status==='Baru'?'badge-new':l.status==='Diproses'?'badge-proc':'badge-done'}">${l.status}</span></td>
       <td style="white-space:nowrap">
-        <button class="btn btn-sm btn-success" onclick="updateStatus(${l.id},'Diproses')" title="Proses">⚙️</button>
-        <button class="btn btn-sm btn-ghost" onclick="updateStatus(${l.id},'Selesai')" title="Selesai">✅</button>
-        <button class="btn btn-sm btn-danger" onclick="deleteEntry(${l.id})" title="Hapus">🗑️</button>
+        <button class="btn btn-sm btn-success" onclick="updateStatus(${l.id},'Diproses')">Proses</button>
+        <button class="btn btn-sm btn-ghost" onclick="updateStatus(${l.id},'Selesai')">Selesai</button>
+        <button class="btn btn-sm btn-danger" onclick="deleteEntry(${l.id})">Hapus</button>
       </td>
     </tr>`).join('');
 }
@@ -939,31 +915,19 @@ function deleteEntry(id) {
 function clearAllData() {
   if (!confirm('Hapus SEMUA data laporan? Tindakan ini tidak dapat dibatalkan.')) return;
   laporan = [];
-  saveData();
-  filterLaporan();
-  updateDashboard();
+  saveData(); filterLaporan(); updateDashboard();
   showToast('Semua data telah dihapus');
 }
 
-// ============ STORAGE INFO ============
 function updateStorageInfo() {
   try {
     const data = localStorage.getItem(DB_KEY) || '';
     const kb = (new Blob([data]).size / 1024).toFixed(2);
-    document.getElementById('storage-info').textContent = `LocalStorage: ${laporan.length} laporan | ${kb} KB digunakan`;
+    const el = document.getElementById('storage-info');
+    if (el) el.textContent = 'LocalStorage: ' + laporan.length + ' laporan | ' + kb + ' KB digunakan';
   } catch(e) {}
 }
 
-
-function el(id, text, prop, val) {
-  const e = document.getElementById(id);
-  if (!e) return;
-  if (text !== null && text !== undefined) e.textContent = text;
-  if (prop && val) e.style[prop] = val;
-}
-
-
-// ============ TOAST ============
 function showToast(msg, color) {
   const t = document.getElementById('toast');
   t.textContent = msg;
@@ -973,24 +937,25 @@ function showToast(msg, color) {
   setTimeout(() => t.classList.remove('show'), 2800);
 }
 
-// ============ PWA ============
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredInstall = e;
   document.getElementById('install-banner').style.display = 'flex';
 });
 
-document.getElementById('install-btn') && document.getElementById('install-btn').addEventListener('click', () => {
-  if (deferredInstall) {
-    deferredInstall.prompt();
-    deferredInstall.userChoice.then(() => {
-      deferredInstall = null;
-      document.getElementById('install-banner').style.display = 'none';
-    });
-  }
-});
+const installBtn = document.getElementById('install-btn');
+if (installBtn) {
+  installBtn.addEventListener('click', () => {
+    if (deferredInstall) {
+      deferredInstall.prompt();
+      deferredInstall.userChoice.then(() => {
+        deferredInstall = null;
+        document.getElementById('install-banner').style.display = 'none';
+      });
+    }
+  });
+}
 
-// Service Worker
 if ('serviceWorker' in navigator) {
   const swCode = `
     const CACHE = 'roadwatch-v1';
@@ -1006,12 +971,10 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register(swUrl).catch(() => {});
 }
 
-// ============ SCROLL TOP ============
 window.addEventListener('scroll', () => {
   document.getElementById('scrollTop').style.display = window.scrollY > 300 ? 'block' : 'none';
 });
 
-// ============ INIT ============
 saveData();
 updateDashboard();
 </script>
